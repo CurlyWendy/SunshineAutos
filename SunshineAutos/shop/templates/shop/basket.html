@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %} Вход {% endblock %}
+
+
+{% block content %}
+    {% if object_list %}
+        <div class="cart-content">
+            <div class="cart">
+                {% for basket in object_list %}
+                <div class="cart-item">
+                    <img src="{{ basket.product.image.url }}" alt="{{ basket.product.name }}">
+                    <div class="item-details">
+                        <h2>{{ basket.product.name }}</h2>
+                        <p>{{ basket.product.short_description }}</p>
+                        <p>Цена: {{ basket.sum }}</p>
+                        <p>Количество: {{ basket.quantity }}</p>
+                    </div>
+                    <div class="item-actions">
+                        <a href="{% url 'basket_add' basket.product.id %}">
+                            <button class="add-to-cart-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v4h4v2h-4v4h-2v-4H7v-2h4z"/>
+                                </svg>
+                            </button>
+                        </a>
+                        <a href="{% url 'basket_delete' basket.id %}">
+                            <button class="remove-from-cart-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M18 4L6.39 15.61 4.98 17.02 4 17l1.61-1.61L17.17 4H18zM2 20h20v2H2v-2z"/>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="cart-summary">
+                        <p>Общее количество товаров: {{ total_quantity }}</p>
+                        <p>Общая стоимость: {{ total_sum }}</p>
+                        <a href="{% url 'create_order' %}"><button class="buy-button" type="submit">Оформить заказ</button></a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="content">
+            {{info_text}}
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}  {% endblock %}
+
+
+{% block content %}
+
+<div class="products">
+    {% for product in object_list %}
+        <a href="{% url 'product-detail' product.id %}" style="text-decoration: none; color: inherit;">
+            <div class="product-card">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h2 class="product-title">{{ product.name }}</h2>
+                <p class="product-price">{{ product.price }}</p>
+
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+
+<script src="{% static 'shop/js/vertical_menu.js'%}"></script>
+<script src="{% static 'shop/js/toggle_icon.js'%}"></script>
+{% endblock %}

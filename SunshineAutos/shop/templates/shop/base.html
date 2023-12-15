@@ -1,0 +1,64 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+  </head>
+  <body>  
+    <style>
+        </style>
+    <div class="navigation">
+      <div class="logo">
+          <a href="{% url 'main' %}">
+              <img src="{% static 'shop/img/icon.png' %}" alt="" class="logotype">
+          </a>
+      </div>
+  
+      <div class="nav-menu">
+          <ul class="menu">
+              <li class="nav-item"><a href="{% url 'catalog' %}" class="nav-link">Каталог</a></li>
+              <li class="nav-item"><a href="{% url 'premium' %}" class="nav-link">Ретро автомобили</a></li>
+              <li class="nav-item"><a href="{% url 'about_us' %}" class="nav-link">О компании</a></li>
+          </ul>
+      </div>
+      
+
+      <div class="search-block">
+        <div class="searsh">
+            <form method="get" action="{% url 'search' %}">
+                <input type="text" class="search-form" name="q" placeholder="Поиск">
+                <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
+  
+  
+      <div class="personal-item">
+          <div class="auth">
+              {% if request.user.is_authenticated %}
+                  <div class="login">
+                      <a href="" class="auth-link signIn"><i
+                              class="fas fa-user-circle"></i>{{ request.user.first_name }}</a>
+                  </div>
+                  <div class="car">
+                      <a href="{% url 'basket' %}" class="auth-link"><i class="fas fa-shopping-cart"></i>Корзина</a>
+                  </div>
+                  <div class="login">
+                      <a href="{% url 'logout' %}" class="auth-link signIn"><i class="fas fa-sign-out-alt" style="color: #e01533;"></i>Выход</a>
+                  </div>
+              {% else %}
+                  <div class="login">
+                      <a href="{% url 'signin' %}" class="auth-link signIn"><i class="fas fa-user-circle"></i>Войти</a>
+                  </div>
+              {% endif %}
+          </div>
+      </div>
+  </div>
+  {% block content %}
+  {% endblock %}
+
+  </body>
+</html>

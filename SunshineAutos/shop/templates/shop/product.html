@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %} Вход {% endblock %}
+
+
+{% block content %}
+<div class="product">
+    <div class="product-image">
+        <img src="{{product.image.url}}" alt="Картинка {{product.name}}">
+    </div>
+    <div class="product-description">
+        <h1>{{product.name}}</h1>
+        <p>{{product.product_type}}</p>
+        <p>{{product.product_material}}</p>
+        <p>{{product.product_insert}}</p>
+        <p>{{product.brand}}</p>
+        <p>{{product.cut_type}}</p>
+        <p>{{product.color}}</p>
+        <p class="price">{{product.price}} ₽</p>
+        <a href="{% url 'basket_add' product.id %}">
+            <button class="buy-button">Добавить в корзину</button></a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %} Ювелирный магазин {% endblock %}
+
+
+{% block content %}
+<div class="main-information">
+    <div class="text-inform">
+        <h1 class="animated">Сопровождает</h1>
+        <h1 class="animated">в пути</h1>
+        <div class="inform-link">
+            <a href="{% url 'catalog' %}"><div class="inform-btn read">Перейти к каталогу</div></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="newproducts">
+    <div class = "newproduct">
+        <h1>Ретро автомобили</h1>
+    </div>
+    {% for product in products %}
+                <a href="{% url 'product-detail' product.id%}" style="text-decoration: none; color: inherit;">
+                    <div class="product-card">
+                        <img src="{{product.image.url}}" alt="{{product.name}}">
+                        <h2 class="product-title">{{product.name}}</h2>
+                        <p class="product-price">{{product.price}} ₽</p>
+                    </div>
+                </a>
+    {% endfor %}
+    </div>
+
+{% endblock %}

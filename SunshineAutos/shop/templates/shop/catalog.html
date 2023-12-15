@@ -1,0 +1,101 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}  {% endblock %}
+
+
+{% block content %}
+<form class="filter-form" id="filter-form" method="GET">
+    <div class="vertical-menu">
+        <ul>
+            <li>
+                <h5 onclick="toggleIcon(this)">Тип изделия</h5>
+                {% for product_type in product_types %}
+                    <ul class="sub-menu">
+                        <li><input type="checkbox" id="{{ product_type.id }}" name="product_type" value="{{ product_type.id }}"><label
+                                for="product_type-{{ product_type.id }}">{{ product_type.name }}</label></li>
+                    </ul>
+                {% endfor %}
+            </li>
+            <li>
+                <h5 onclick="toggleIcon(this)">Материал</h5>
+                {% for material in product_materials %}
+                    <ul class="sub-menu">
+                        <li><input type="checkbox" id="{{ material.id }}" name="product_material" value="{{ material.id }}"><label
+                                for="material-{{ material.id }}">{{ material.name }}</label></li>
+                    </ul>
+                {% endfor %}
+            </li>
+            <li>
+                <h5 onclick="toggleIcon(this)">Вставка</h5>
+                {% for insert in product_inserts %}
+                    <ul class="sub-menu">
+                        <li><input type="checkbox" id="{{insert.id}}" name="product_insert" value="{{ insert.name }}"><label
+                                for="{{ insert.name }}">{{ insert.name }}</label></li>
+                    </ul>
+                {% endfor %}
+            </li>
+            <li>
+                <h5 onclick="toggleIcon(this)">Бренд</h5>
+                {% for brand in brands %}
+                    <ul class="sub-menu">
+                        <li><input type="checkbox" id="{{ brand.id }}" name="brand" value="{{ brand.id }}"><label
+                                for="{{brand.id}}">{{ brand.name }}</label></li>
+                    </ul>
+                {% endfor %}
+            </li>
+            <li>
+                <h5 onclick="toggleIcon(this)">Пол</h5>
+                <ul class="sub-menu">
+                    <li><input type="checkbox" id="M" name="gender" value="M"><label for="male">Мужское</label></li>
+                    <li><input type="checkbox" id="F" name="gender" value="F"><label for="female">Женское</label>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h5 onclick="toggleIcon(this)">Цвет</h5>
+                {% for color in colors %}
+                    <ul class="sub-menu">
+                        <li><input type="checkbox" id="{{ color.id }}" name="color" value="{{ color.id }}"><label
+                                for="{{color.id}}">{{ color.name }}</label></li>
+                    </ul>
+                {% endfor %}
+            </li>
+        </ul>
+        <button type="submit" class="menu-btn">Применить фильтры</button>
+        <button type="submit" class="menu-btn">Сбросить фильтры</button>
+    </div>
+</form>
+
+<div class="products">
+    {% for product in products %}
+        <a href="{% url 'product-detail' product.id %}" style="text-decoration: none; color: inherit;">
+            <div class="product-card">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <h2 class="product-title">{{ product.name }}</h2>
+                <p class="product-price">{{ product.price }} ₽</p>
+
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if products.has_previous %}
+            <a href="?page=1">&laquo; первая</a>
+            <a href="?page={{ products.previous_page_number }}">предыдущая</a>
+        {% endif %}
+
+        <span class="current-page">{{ products.number }}</span>
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}">следующая</a>
+            <a href="?page={{ products.paginator.num_pages }}">последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<script src="{% static 'shop/js/vertical_menu.js'%}"></script>
+<script src="{% static 'shop/js/toggle_icon.js'%}"></script>
+{% endblock %}

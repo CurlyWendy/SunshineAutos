@@ -11,7 +11,7 @@ from .forms import *
 
 class LoginUserView(LoginView):
     form_class = AccountLoginForm
-    template_name = 'registration/login.html'
+    template_name = 'user/login.html'
     redirect_authenticated_user = True
 
     def get_user_context(self, **kwargs):
@@ -32,7 +32,7 @@ class LoginUserView(LoginView):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect('signin')
+        return redirect('login')
 
 
 def register(request):
@@ -44,5 +44,5 @@ def register(request):
             return redirect('main')
     else:
         form = AccountRegisterForm()
-    return render(request, 'registration/registration.html', {'form': form})
+    return render(request, 'user/registration.html', {'form': form})
 

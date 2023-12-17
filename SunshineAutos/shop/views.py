@@ -14,7 +14,7 @@ class MainPageListView(ListView):
 
     def get(self, request, *args, **kwargs):
         context = {
-            'products': Car.objects.filter(in_stock=True)
+            'products': Car.objects.filter(is_retro=True)
         }
         return render(request, self.template_name, context)
 
@@ -25,33 +25,32 @@ class ProductListView(ListView):
     def get_queryset(self):
         queryset = Car.objects.all()
 
-        product_types = self.request.GET.getlist('product_type')
-        colors = self.request.GET.getlist('color')
-        brands = self.request.GET.getlist('brand')
+        product_types = self.request.GET.getlist('car_type')
+        colors = self.request.GET.getlist('car_color')
+        brands = self.request.GET.getlist('car_make')
 
         if product_types:
             product_type_filters = Q()
             for product_type in product_types:
-                product_type_filters |= Q(product_type=product_type)
+                product_type_filters |= Q(car_type=product_type)
             queryset = queryset.filter(product_type_filters)
 
         if colors:
             colors_filters = Q()
             for color in colors:
-                colors_filters |= Q(color=color)
+                colors_filters |= Q(car_color=color)
             queryset = queryset.filter(colors_filters)
 
         if brands:
             brand_filters = Q()
             for brand in brands:
-                brand_filters |= Q(brand=brand)
+                brand_filters |= Q(car_make=brand)
             queryset = queryset.filter(brand_filters)
 
         return queryset
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-
         car_types = CarType.objects.values()
         brands = CarMake.objects.values()
         colors = CarColor.objects.values()
@@ -74,7 +73,7 @@ class PremiumListView(ListView):
     template_name = 'shop/catalog.html'
 
     def get_queryset(self):
-        queryset = Car.objects.filter(in_stock=True)
+        queryset = Car.objects.filter(is_retro=True)
 
         product_types = self.request.GET.getlist('product_type')
         colors = self.request.GET.getlist('color')

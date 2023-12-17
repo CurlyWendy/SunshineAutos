@@ -10,9 +10,9 @@
             <div class="cart">
                 {% for basket in object_list %}
                 <div class="cart-item">
-                    <img src="{{ basket.product.image.url }}" alt="{{ basket.product.name }}">
+                    <img src="{{ basket.product.car_picture.url }}" alt="{{ basket.product.car_make }}">
                     <div class="item-details">
-                        <h2>{{ basket.product.name }}</h2>
+                        <h2>{{ basket.product.car_make }} {{ basket.product.car_model }}</h2>
                         <p>{{ basket.product.short_description }}</p>
                         <p>Цена: {{ basket.sum }}</p>
                         <p>Количество: {{ basket.quantity }}</p>

@@ -20,7 +20,7 @@ class CarMake(models.Model):
     name = models.CharField(max_length = 40, unique = True)
 
     def __str__(self):
-        return f'Марка автомобиля {self.name}'
+        return f'{self.name}'
 
 
 class Car(models.Model):
@@ -44,6 +44,8 @@ class Car(models.Model):
     )
     in_stock = models.BooleanField(default = True)
     year_manufacture = models.DateField()
+    is_retro = models.BooleanField(default=False)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'Автомобиль {self.car_make} {self.car_model} {self.car_color} цвета'
@@ -60,10 +62,10 @@ class Basket(models.Model):
         verbose_name_plural = 'Корзины'
 
     def __str__(self):
-        return f'Корзина для {self.user.username} | Товар {self.product.name}'
+        return f'Корзина для {self.user.username} | Товар {self.product.car_make} {self.product.car_model}'
 
     def sum(self):
-        return self.quantity * self.product.price
+        return self.quantity * self.product.car_price
 
 
 class OrderItem(models.Model):
@@ -80,7 +82,7 @@ class OrderItem(models.Model):
         return self.quantity * self.price
 
     def __str__(self):
-        return f'Товар заказан {self.product.name}'
+        return f'Товар заказан {self.product.car_make} {self.product.car_model}'
 
 
 class Order(models.Model):

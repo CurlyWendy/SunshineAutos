@@ -9,54 +9,28 @@
     <div class="vertical-menu">
         <ul>
             <li>
-                <h5 onclick="toggleIcon(this)">Тип изделия</h5>
+                <h5 onclick="toggleIcon(this)">Тип машины</h5>
                 {% for product_type in product_types %}
                     <ul class="sub-menu">
-                        <li><input type="checkbox" id="{{ product_type.id }}" name="product_type" value="{{ product_type.id }}"><label
+                        <li><input type="checkbox" id="{{ product_type.id }}" name="car_type" value="{{ product_type.id }}"><label
                                 for="product_type-{{ product_type.id }}">{{ product_type.name }}</label></li>
                     </ul>
                 {% endfor %}
             </li>
             <li>
-                <h5 onclick="toggleIcon(this)">Материал</h5>
-                {% for material in product_materials %}
-                    <ul class="sub-menu">
-                        <li><input type="checkbox" id="{{ material.id }}" name="product_material" value="{{ material.id }}"><label
-                                for="material-{{ material.id }}">{{ material.name }}</label></li>
-                    </ul>
-                {% endfor %}
-            </li>
-            <li>
-                <h5 onclick="toggleIcon(this)">Вставка</h5>
-                {% for insert in product_inserts %}
-                    <ul class="sub-menu">
-                        <li><input type="checkbox" id="{{insert.id}}" name="product_insert" value="{{ insert.name }}"><label
-                                for="{{ insert.name }}">{{ insert.name }}</label></li>
-                    </ul>
-                {% endfor %}
-            </li>
-            <li>
-                <h5 onclick="toggleIcon(this)">Бренд</h5>
+                <h5 onclick="toggleIcon(this)">Марка</h5>
                 {% for brand in brands %}
                     <ul class="sub-menu">
-                        <li><input type="checkbox" id="{{ brand.id }}" name="brand" value="{{ brand.id }}"><label
+                        <li><input type="checkbox" id="{{ brand.id }}" name="car_make" value="{{ brand.id }}"><label
                                 for="{{brand.id}}">{{ brand.name }}</label></li>
                     </ul>
                 {% endfor %}
             </li>
             <li>
-                <h5 onclick="toggleIcon(this)">Пол</h5>
-                <ul class="sub-menu">
-                    <li><input type="checkbox" id="M" name="gender" value="M"><label for="male">Мужское</label></li>
-                    <li><input type="checkbox" id="F" name="gender" value="F"><label for="female">Женское</label>
-                    </li>
-                </ul>
-            </li>
-            <li>
                 <h5 onclick="toggleIcon(this)">Цвет</h5>
                 {% for color in colors %}
                     <ul class="sub-menu">
-                        <li><input type="checkbox" id="{{ color.id }}" name="color" value="{{ color.id }}"><label
+                        <li><input type="checkbox" id="{{ color.id }}" name="car_color" value="{{ color.id }}"><label
                                 for="{{color.id}}">{{ color.name }}</label></li>
                     </ul>
                 {% endfor %}
@@ -69,14 +43,13 @@
 
 <div class="products">
     {% for product in products %}
-        <a href="{% url 'product-detail' product.id %}" style="text-decoration: none; color: inherit;">
-            <div class="product-card">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                <h2 class="product-title">{{ product.name }}</h2>
-                <p class="product-price">{{ product.price }} ₽</p>
-
-            </div>
-        </a>
+                <a href="{% url 'product-detail' product.id%}" style="text-decoration: none; color: inherit;">
+                    <div class="product-card">
+                        <img src="{{product.car_picture.url}}" alt="{{product.name}}">
+                        <h2 class="product-title">{{product.car_make}} {{product.car_model}}</h2>
+                        <p class="product-price">{{product.car_price}} $</p>
+                    </div>
+                </a>
     {% endfor %}
 </div>
 

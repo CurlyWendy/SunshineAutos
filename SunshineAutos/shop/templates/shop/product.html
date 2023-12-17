@@ -7,17 +7,14 @@
 {% block content %}
 <div class="product">
     <div class="product-image">
-        <img src="{{product.image.url}}" alt="Картинка {{product.name}}">
+        <img src="{{product.car_picture.url}}" alt="Картинка {{product.car_make}}">
     </div>
     <div class="product-description">
-        <h1>{{product.name}}</h1>
-        <p>{{product.product_type}}</p>
-        <p>{{product.product_material}}</p>
-        <p>{{product.product_insert}}</p>
-        <p>{{product.brand}}</p>
-        <p>{{product.cut_type}}</p>
-        <p>{{product.color}}</p>
-        <p class="price">{{product.price}} ₽</p>
+        <h1>{{product.car_make}} {{product.car_model}}</h1>
+        <p>{{product.car_type}}</p>
+        <p>{{product.car_color}}</p>
+        <p>{{product.description}}</p>
+        <p class="price">{{product.car_price}} $</p>
         <a href="{% url 'basket_add' product.id %}">
             <button class="buy-button">Добавить в корзину</button></a>
     </div>

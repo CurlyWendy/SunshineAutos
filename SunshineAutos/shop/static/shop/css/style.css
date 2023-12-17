@@ -48,7 +48,7 @@ body {
 
 .nav-link {
 	text-decoration: none;
-	color: #6f6f6f;
+	color: black;
 	font-size: 16px;
 	border-bottom: 2px solid transparent;
 	transition: .3s;
@@ -84,7 +84,7 @@ body {
 	border: none;
 	outline: none;
 	font-weight: bold;
-	color: #6f6f6f;
+	color: black;
 }
 
 .search-btn {
@@ -119,7 +119,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	color: #6f6f6f;
+	color: black;
 	text-decoration: none;
 	font-weight: bold;
 	font-size: 16px;
@@ -377,7 +377,7 @@ body {
 }
 
 .tagline {
-	color: #6f6f6f;
+	color: black;
 	font-size: 20px;
 	margin: 10px 0;
 	padding: 0;
@@ -446,7 +446,7 @@ body {
 }
 
 .find a:hover {
-	color: #6f6f6f;
+	color: black;
 }
 
 .find i {

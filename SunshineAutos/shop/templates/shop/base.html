@@ -39,6 +39,12 @@
       <div class="personal-item">
           <div class="auth">
               {% if request.user.is_authenticated %}
+              {% if request.user.is_staff %}
+                  <div class="login">
+                      <a href="{% url 'admin:index' %}" class="auth-link signIn"><i
+                              class="fas fa-user-circle"></i>Панель администратора</a>
+                  </div>
+              {% endif %}
                   <div class="login">
                       <a href="" class="auth-link signIn"><i
                               class="fas fa-user-circle"></i>{{ request.user.first_name }}</a>

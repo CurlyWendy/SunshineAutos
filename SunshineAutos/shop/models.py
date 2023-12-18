@@ -6,14 +6,14 @@ class CarType(models.Model):
     name = models.CharField(max_length = 20, unique = True)
 
     def __str__(self):
-        return f'Тип автомобиля {self.name}'
+        return f'Тип автомобиля: {self.name}'
 
 
 class CarColor(models.Model):
     name = models.CharField(max_length = 20, unique = True)
 
     def __str__(self):
-        return f'Цвет машины {self.name}'
+        return f'Цвет машины: {self.name}'
 
 
 class CarMake(models.Model):

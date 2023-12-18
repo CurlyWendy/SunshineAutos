@@ -10,9 +10,9 @@
     {% for product in object_list %}
         <a href="{% url 'product-detail' product.id %}" style="text-decoration: none; color: inherit;">
             <div class="product-card">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                <h2 class="product-title">{{ product.name }}</h2>
-                <p class="product-price">{{ product.price }}</p>
+                <img src="{{ product.car_picture.url }}" alt="{{ product.car_make }} {{ product.car_model }}">
+                <h2 class="product-title">{{ product.car_make }} {{ product.car_model }}</h2>
+                <p class="product-price">{{ product.car_price }} $</p>
 
             </div>
         </a>

@@ -143,7 +143,7 @@ class SearchListView(ListView):
     template_name = 'shop/search.html'
 
     def get_queryset(self):
-        return Car.objects.filter(name__icontains=self.request.GET.get('q'))
+        return Car.objects.filter(car_make__name=self.request.GET.get('q'))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -220,7 +220,7 @@ def create_order(request):
             order_item = OrderItem.objects.create(
                 product=basket_item.product,
                 quantity=basket_item.quantity,
-                price=basket_item.product.price * basket_item.quantity
+                price=basket_item.product.car_price * basket_item.quantity
             )
             order.items.add(order_item)
 

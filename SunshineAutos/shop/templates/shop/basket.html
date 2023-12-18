@@ -14,7 +14,7 @@
                     <div class="item-details">
                         <h2>{{ basket.product.car_make }} {{ basket.product.car_model }}</h2>
                         <p>{{ basket.product.short_description }}</p>
-                        <p>Цена: {{ basket.sum }}</p>
+                        <p>Цена: {{ basket.sum }} $</p>
                         <p>Количество: {{ basket.quantity }}</p>
                     </div>
                     <div class="item-actions">
@@ -39,7 +39,7 @@
                 {% endfor %}
                 <div class="cart-summary">
                         <p>Общее количество товаров: {{ total_quantity }}</p>
-                        <p>Общая стоимость: {{ total_sum }}</p>
+                        <p>Общая стоимость: {{ total_sum }} $</p>
                         <a href="{% url 'create_order' %}"><button class="buy-button" type="submit">Оформить заказ</button></a>
                 </div>
             </div>

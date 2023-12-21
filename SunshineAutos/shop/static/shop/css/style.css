@@ -6,7 +6,49 @@ body {
 	font-family: 'PT Sans', sans-serif;
 }
 
+.bg {
+  animation:slide 10s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, rgb(230, 230, 230) 50%, rgb(150, 129, 38) 50%);
+  bottom:0;
+  left:-10%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
 
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+.leftimg {
+    float:left; /* Выравнивание по левому краю */
+    margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
+   }
+
+.rightimg  {
+    float: right; /* Выравнивание по правому краю  */
+    margin: 7px 0 7px 7px; /* Отступы вокруг картинки */
+   }
+
+.about-us-header {
+    margin-left: 20px;
+}
 /*====================Style for navigation======================*/
 .navigation {
 	z-index: 20;
